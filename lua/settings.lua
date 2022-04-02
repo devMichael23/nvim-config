@@ -1,1 +1,1 @@
-require('settings/base')
+require('settings.base')
