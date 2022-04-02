@@ -47,5 +47,16 @@ return require('packer').startup(function()
 
     use 'majutsushi/tagbar' -- Tags inside file
 
+    ------------------------------------------------------------------------------
+    -- Plugins of IDE Options
+    ------------------------------------------------------------------------------
+
+    use 'Raimondi/delimitMate' -- Auto close quotes, parenthesis, brackets, etc.
+
+    use {
+        'numToStr/Comment.nvim', -- Auto comments
+        config = function() require('Comment').setup() end
+    }
+
 end)
 
