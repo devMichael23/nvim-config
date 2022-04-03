@@ -53,6 +53,11 @@ return require('packer').startup(function()
     -- Plugins of IDE Options
     ------------------------------------------------------------------------------
 
+    use {
+        'nvim-telescope/telescope.nvim', -- Fuzzy finder
+        requires = 'nvim-lua/plenary.nvim' -- Lua module for asynchronous programming
+    }
+
     use 'Raimondi/delimitMate' -- Auto close quotes, parenthesis, brackets, etc.
 
     use {
