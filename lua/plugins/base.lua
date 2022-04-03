@@ -60,5 +60,7 @@ return require('packer').startup(function()
         config = function() require('Comment').setup() end
     }
 
+    use 'akinsho/toggleterm.nvim' -- Terminal in Neovim
+
 end)
 

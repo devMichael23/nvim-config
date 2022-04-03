@@ -1,2 +1,4 @@
 require('plugins.base')
+-- Plugins config
 require('plugins.treesitter')
+require('plugins.toggleterm')
