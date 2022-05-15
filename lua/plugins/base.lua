@@ -3,21 +3,44 @@ local fn = vim.fn
 local execute = vim.api.nvim_command
 
 
--- Auto install packer.nvim if not exists
-local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+-- Automatically install packer
+local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-  execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
+    PACKER_BOOTSTRAP = fn.system {
+        "git", "clone", "--depth", "1",
+        "https://github.com/wbthomason/packer.nvim",
+        install_path,
+    }
+    print "Installing packer close and reopen Neovim..."
+    vim.cmd [[packadd packer.nvim]]
 end
 
-vim.cmd [[packadd packer.nvim]]
-vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+    augroup packer_user_config
+        autocmd!
+        autocmd BufWritePost plugins.lua source <afile> | PackerSync
+    augroup end
+]]
 
-return require('packer').startup(function() 
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+    return
+end
+
+
+
+return require('packer').startup(function()
     ------------------------------------------------------------------------------
     -- Packer
     ------------------------------------------------------------------------------
 
     use 'wbthomason/packer.nvim'
+
+    use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+
+    use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
 
     ------------------------------------------------------------------------------
     -- Plugins for view
@@ -43,6 +66,7 @@ return require('packer').startup(function()
         'kyazdani42/nvim-tree.lua', -- SourceTree
         requires = 'kyazdani42/nvim-web-devicons', -- Icnons
         config = function() require'nvim-tree'.setup{} end,
+        tag = 'nightly'
     }
 
     use 'majutsushi/tagbar' -- Tags inside file
@@ -67,5 +91,39 @@ return require('packer').startup(function()
 
     use 'akinsho/toggleterm.nvim' -- Terminal in Neovim
 
-end)
+    ------------------------------------------------------------------------------
+    -- LSP
+    ------------------------------------------------------------------------------
+    use "neovim/nvim-lspconfig" -- LSP
 
+    use "williamboman/nvim-lsp-installer" -- Installer servers for LSP
+
+    ------------------------------------------------------------------------------
+    -- AutoComplete
+    ------------------------------------------------------------------------------
+
+    use "hrsh7th/nvim-cmp" -- The completion plugin
+
+    use "hrsh7th/cmp-buffer" -- Buffer completions
+
+    use "hrsh7th/cmp-path" -- Path completions
+
+    use "hrsh7th/cmp-cmdline" -- CMDline completions
+
+    use "saadparwaiz1/cmp_luasnip" -- Snippet completions
+
+    use "hrsh7th/cmp-nvim-lsp" -- LSP completions
+
+    use "hrsh7th/cmp-nvim-lua" -- Lua completions
+
+    use "L3MON4D3/LuaSnip" --Snippet engine
+
+    use "rafamadriz/friendly-snippets" -- A bunch of snippets to use
+
+
+
+    if PACKER_BOOTSTRAP then
+        require("packer").sync()
+    end
+
+end)
