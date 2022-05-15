@@ -12,7 +12,7 @@ end
 vim.cmd [[packadd packer.nvim]]
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
-return require('packer').startup(function() 
+return require('packer').startup(function()
     ------------------------------------------------------------------------------
     -- Packer
     ------------------------------------------------------------------------------
@@ -43,6 +43,7 @@ return require('packer').startup(function()
         'kyazdani42/nvim-tree.lua', -- SourceTree
         requires = 'kyazdani42/nvim-web-devicons', -- Icnons
         config = function() require'nvim-tree'.setup{} end,
+        tag = 'nightly'
     }
 
     use 'majutsushi/tagbar' -- Tags inside file
