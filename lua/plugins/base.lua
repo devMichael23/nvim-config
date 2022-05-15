@@ -31,7 +31,7 @@ end
 
 
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
     ------------------------------------------------------------------------------
     -- Packer
     ------------------------------------------------------------------------------
@@ -92,8 +92,30 @@ return require('packer').startup(function()
     use 'akinsho/toggleterm.nvim' -- Terminal in Neovim
 
     ------------------------------------------------------------------------------
+    -- GIT
+    ------------------------------------------------------------------------------
+
+    use {
+        'TimUntersberger/neogit', -- Full Git integration
+        requires = 'nvim-lua/plenary.nvim'
+    }
+
+    use 'lewis6991/gitsigns.nvim' -- Show git changes
+
+    use 'f-person/git-blame.nvim' -- Show git blame line
+
+    use({
+        "olimorris/persisted.nvim", -- Git sessions for branch
+        config = function()
+            require("persisted").setup()
+            require("telescope").load_extension("persisted") -- Telescope extension
+         end,
+    })
+
+    ------------------------------------------------------------------------------
     -- LSP
     ------------------------------------------------------------------------------
+
     use "neovim/nvim-lspconfig" -- LSP
 
     use "williamboman/nvim-lsp-installer" -- Installer servers for LSP
