@@ -48,6 +48,8 @@ return require('packer').startup(function(use)
 
     use 'joshdick/onedark.vim' -- OneDark theme
 
+    use 'folke/tokyonight.nvim'
+
     use {
         'nvim-lualine/lualine.nvim', -- InfoLine
         requires = {
