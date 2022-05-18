@@ -48,7 +48,7 @@ return require('packer').startup(function(use)
 
     use 'joshdick/onedark.vim' -- OneDark theme
 
-    use 'folke/tokyonight.nvim'
+    use 'folke/tokyonight.nvim' -- Tokyonight theme
 
     use {
         'nvim-lualine/lualine.nvim', -- InfoLine
@@ -92,6 +92,8 @@ return require('packer').startup(function(use)
     }
 
     use 'akinsho/toggleterm.nvim' -- Terminal in Neovim
+
+    use 'lukas-reineke/indent-blankline.nvim'
 
     ------------------------------------------------------------------------------
     -- GIT
