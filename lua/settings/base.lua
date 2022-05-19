@@ -12,8 +12,9 @@ opt.cursorline = true               -- Highlighting a line with a cursor
 opt.spelllang = { 'en_us', 'ru' }   -- Dictionary
 opt.number = true 		            -- On line number
 -- opt.relativenumber = true 	        -- Highlighting a line with a cursor
-opt.splitright = true               -- Vertical split 
+opt.splitright = true               -- Vertical split
 opt.splitbelow = true               -- Horizontal split
+opt.termguicolors = true --  24-bit RGB colors
 
 
 ------------------------------------------------------------------------------

@@ -1,5 +1,6 @@
 require('plugins.base')
 -- Plugins config
+require('plugins.theme')
 require('plugins.treesitter')
 require('plugins.toggleterm')
 require('plugins.telescope')
