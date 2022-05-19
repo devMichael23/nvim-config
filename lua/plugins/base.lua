@@ -19,6 +19,7 @@ vim.cmd [[
     augroup packer_user_config
         autocmd!
         autocmd BufWritePost plugins.lua source <afile> | PackerSync
+        autocmd BufWritePost base.lua source <afile> | PackerSync
     augroup end
 ]]
 
@@ -60,7 +61,8 @@ return require('packer').startup(function(use)
     use {
         'akinsho/bufferline.nvim', -- Tabs
         requires = 'kyazdani42/nvim-web-devicons', --Icons
-        config = function() require("bufferline").setup{} end,
+        tag = "v2.*",
+        config = function() require("bufferline").setup{} end
     }
 
     use {
@@ -90,7 +92,10 @@ return require('packer').startup(function(use)
         config = function() require('Comment').setup() end
     }
 
-    use 'akinsho/toggleterm.nvim' -- Terminal in Neovim
+    use {
+        'akinsho/toggleterm.nvim', -- Terminal in Neovim
+        tag = 'v1.*'
+    }
 
     use 'lukas-reineke/indent-blankline.nvim'
 
