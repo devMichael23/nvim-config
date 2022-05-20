@@ -9,7 +9,7 @@ require('persisted').setup({
     before_save = function() end, -- Function to run before the session is saved to disk
     after_save = function() end, -- Function to run after the session is saved to disk
     telescope = { -- Options for the telescope extension
-        before_source = function(session) end, -- Function to run before the session is sourced via telescope
-        after_source = function(session) end, -- Function to run after the session is sourced via telescope
+        before_source = function() end, -- Function to run before the session is sourced via telescope
+        after_source = function() end, -- Function to run after the session is sourced via telescope
     },
 })
