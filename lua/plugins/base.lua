@@ -150,7 +150,9 @@ return require('packer').startup(function(use)
 
     use "rafamadriz/friendly-snippets" -- A bunch of snippets to use
 
+    use "prabirshrestha/vim-lsp"
 
+    use "dmitmel/cmp-vim-lsp"
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()
