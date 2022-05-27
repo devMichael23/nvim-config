@@ -128,6 +128,8 @@ return require('packer').startup(function(use)
 
     use "williamboman/nvim-lsp-installer" -- Installer servers for LSP
 
+    use "jackguo380/vim-lsp-cxx-highlight" -- LSP for C/C++
+
     ------------------------------------------------------------------------------
     -- AutoComplete
     ------------------------------------------------------------------------------
